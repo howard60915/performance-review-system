@@ -1,5 +1,4 @@
-import { IsEmail, IsString, IsEnum, IsNotEmpty } from 'class-validator';
-import { UserRole } from '../schemas/employee.schema';
+import { IsEmail, IsString, IsNotEmpty } from 'class-validator';
 
 export class CreateEmployeeDto {
   @IsEmail()
@@ -17,10 +16,6 @@ export class CreateEmployeeDto {
   @IsString()
   @IsNotEmpty()
   lastName: string;
-
-  @IsEnum(UserRole)
-  @IsNotEmpty()
-  role: UserRole;
 
   @IsString()
   @IsNotEmpty()

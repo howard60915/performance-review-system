@@ -13,11 +13,7 @@ export class EmployeesService {
   ) {}
 
   async create(createEmployeeDto: CreateEmployeeDto): Promise<Employee> {
-    const hashedPassword = await bcrypt.hash(createEmployeeDto.password, 10);
-    const createdEmployee = new this.employeeModel({
-      ...createEmployeeDto,
-      password: hashedPassword,
-    });
+    const createdEmployee = new this.employeeModel(createEmployeeDto);
     return createdEmployee.save();
   }
 
@@ -62,5 +58,9 @@ export class EmployeesService {
       throw new NotFoundException(`員工ID ${id} 不存在`);
     }
     return deletedEmployee;
+  }
+
+  async findByEmail(email: string): Promise<Employee | null> {
+    return this.employeeModel.findOne({ email }).exec();
   }
 }
