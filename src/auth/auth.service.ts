@@ -10,6 +10,8 @@ import { EmployeesService } from '../employees/employees.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import * as bcrypt from 'bcrypt';
+import { Roles } from './decorators/roles.decorator';
+import { UserRole } from './enums/user-role.enum';
 
 @Injectable()
 export class AuthService {
@@ -57,7 +59,6 @@ export class AuthService {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
-        role: user.role,
         department: user.department,
         position: user.position,
       },
@@ -78,7 +79,7 @@ export class AuthService {
     const payload = {
       email: user.email,
       sub: user._id,
-      role: user.role,
+      role: UserRole.ADMIN,
     };
     return this.jwtService.sign(payload);
   }

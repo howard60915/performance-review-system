@@ -1,24 +1,24 @@
 version: '3.8'
 
 services:
-  # api:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile.dev
-  #   ports:
-  #     - "3000:3000"
-  #   environment:
-  #     - NODE_ENV=development
-  #     - MONGODB_URI=mongodb://mongodb:27017/performance-review
-  #     - JWT_SECRET=your_development_jwt_secret
-  #   volumes:
-  #     - .:/app
-  #     - /app/node_modules
-  #   depends_on:
-  #     - mongodb
-  #   networks:
-  #     - app-network
-  #   restart: unless-stopped
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - MONGODB_URI=mongodb://mongodb:27017/performance-review
+      - JWT_SECRET=your_development_jwt_secret
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - mongodb
+    networks:
+      - app-network
+    restart: unless-stopped
 
   mongodb:
     image: mongo:latest
